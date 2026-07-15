@@ -65,12 +65,11 @@ const TicTacToe = () => {
           <div className="result">
             Congratulations{" "}
             {winner === "o" ? (
-              <Circle className="circle-icon" size={48} />
+              <Circle className="circle-icon" size={54} />
             ) : (
-              <X className="cross-icon" size={46} />
+              <X className="cross-icon" size={54} />
             )}
-            {" "}
-            <span>Wins</span>
+            {" "}Wins
           </div>
         ) : draw ? (
           "It's a Draw!"
