@@ -2,3 +2,6 @@
 npm create vite@latest
 npm install
 npm run dev
+
+- Lucide React Setup (For Icons)
+npm install lucide-react
