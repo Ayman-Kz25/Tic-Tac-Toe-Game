@@ -19,6 +19,11 @@ const TicTacToe = () => {
   const [isCircleTurn, setIsCircleTurn] = useState(true);
   const [winner, setWinner] = useState("");
   const [draw, setDraw] = useState(false);
+  const [score, setScore] = useState({
+    o: 0,
+    x: 0,
+    draw: 0,
+  });
 
   const checkWinner = (updatedBoard) => {
     for (let pattern of winningPatterns) {
@@ -30,12 +35,21 @@ const TicTacToe = () => {
         updatedBoard[a] === updatedBoard[c]
       ) {
         setWinner(updatedBoard[a]);
+        setScore((prev) => ({
+          ...prev,
+          [updatedBoard[a]]: prev[updatedBoard[a]] + 1,
+        }));
         return;
       }
     }
 
     if (!updatedBoard.includes("")) {
       setDraw(true);
+
+      setScore((prev) => ({
+        ...prev,
+        draw: prev.draw + 1,
+      }));
     }
   };
 
@@ -68,8 +82,8 @@ const TicTacToe = () => {
               <Circle className="circle-icon" size={54} />
             ) : (
               <X className="cross-icon" size={54} />
-            )}
-            {" "}Wins
+            )}{" "}
+            Wins
           </div>
         ) : draw ? (
           "It's a Draw!"
@@ -80,36 +94,41 @@ const TicTacToe = () => {
         )}
       </h1>
 
+      <div className="scoreboard">
+        <div className="score-card">
+          <Circle size={22} className="circle-icon" />
+
+          <span>{score.o}</span>
+        </div>
+
+        <div className="score-card">
+          <X size={22} className="cross-icon" />
+
+          <span>{score.x}</span>
+        </div>
+
+        <div className="score-card draw-card">
+          <span>Draw</span>
+
+          <strong>{score.draw}</strong>
+        </div>
+      </div>
+
       <div className="board">
         {board.map((cell, index) => (
-          <div
-            key={index}
-            className="boxes"
-            onClick={() => handleClick(index)}
-          >
+          <div key={index} className="boxes" onClick={() => handleClick(index)}>
             {cell === "o" && (
-              <Circle
-                size={70}
-                strokeWidth={2.5}
-                className="circle-icon"
-              />
+              <Circle size={70} strokeWidth={2.5} className="circle-icon" />
             )}
 
             {cell === "x" && (
-              <X
-                size={70}
-                strokeWidth={2.5}
-                className="cross-icon"
-              />
+              <X size={70} strokeWidth={2.5} className="cross-icon" />
             )}
           </div>
         ))}
       </div>
 
-      <button
-        className="reset-btn"
-        onClick={resetGame}
-      >
+      <button className="reset-btn" onClick={resetGame}>
         Reset
       </button>
     </div>

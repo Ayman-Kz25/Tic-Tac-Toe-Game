@@ -216,6 +216,59 @@ body{
   transform:scale(.97);
 }
 
+/* ---------- Scoreboard ---------- */
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 35px;
+  flex-wrap: wrap;
+}
+
+.score-card {
+  min-width: 90px;
+  padding: 12px 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  background: var(--accent-bg);
+
+  border: 1px solid var(--accent-border);
+  border-radius: 14px;
+
+  box-shadow: var(--shadow);
+}
+
+.score-card span,
+.score-card strong {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.draw-card {
+  min-width: 120px;
+}
+
+@media (max-width:480px) {
+
+  .scoreboard {
+    gap: 12px;
+  }
+
+  .score-card {
+    min-width: 75px;
+    padding: 10px 16px;
+  }
+
+}
+
 /* ---------------- Responsive ---------------- */
 
 @media (max-width:768px){
